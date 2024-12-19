@@ -1,0 +1,428 @@
+import { createRoot } from 'react-dom/client'
+import {  createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router";
+import './index.css'
+import './loginPage.css'
+import Home from './pages/Home.jsx';
+import Products from './pages/Products.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RootLayout from './components/RootLayout.jsx';
+
+const router = createBrowserRouter(
+  createRoutesFromElements (
+    <Route path='/' element={<RootLayout />}>
+        <Route index element={<Home />}/>
+        <Route path='products' element={<Products />}/>
+        <Route path='loginpage' element={<LoginPage />}/>
+    </Route>
+  )
+)
+
+createRoot(document.getElementById('root')).render(
+    <RouterProvider router={router} />    
+)
+
+import React from 'react'
+import Navbar from './Navbar'
+import { Outlet } from 'react-router'
+import Footer from './Footer'
+
+const RootLayout = () => {
+  return (
+    <div>
+        <Navbar />
+        <div className="container">
+          <Outlet />
+        </div>
+        <Footer />
+    </div>
+  )
+}
+
+export default RootLayout
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+  }
+  
+  body {
+    line-height: 1.6;
+    height: 100%;
+  }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+    }
+  
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background-color:#070707;
+    color: white;
+  }
+  
+  .img-logo {
+    height: 60px;
+  }
+
+  .img-profile{
+    height: 40px;
+  }
+  
+  .navbar ul {
+    display: flex; 
+    padding: 10px 30px;
+    
+  }
+  
+  .navbar ul li {
+    list-style: none;
+    padding: 5px 10px;
+    margin: 0 10px;
+    font-weight: bold;
+  }
+
+  a.active{
+    color: red;
+  }
+  
+  /* .nav-button {
+    background-color: #000; 
+    color: #fff; 
+    padding: 12px 25px; 
+    border: none; 
+    outline: none; 
+    border-radius: 30px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+  }
+  
+  .nav-button:hover {
+    background-color: #444; 
+  } */
+  
+
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+  } 
+
+  
+ 
+  .container h1{
+    font-size: 70px;
+    font-weight: 500;
+}
+  
+  /* .home-page{
+    width: 100%;
+  height: 400px; 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  } */
+
+  .banner {
+    width: 100%; 
+    height: 750px; 
+    object-fit: cover; 
+  }
+  
+
+  .products-page{
+    text-align: center;
+    display: block;
+    margin-left: 5%;
+    margin-right: 5%;
+  
+  }
+
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .product-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+
+
+
+
+
+
+  .footer{
+    background:#000;
+    padding:30px 0px;
+    font-family: 'Play', sans-serif;
+    text-align:center;
+    color: gray;
+    }
+    
+    .footer .row{
+    width:100%;
+    margin:1% 0%;
+    padding:0.6% 0%;
+    font-size:0.8em;
+    }
+    
+    .footer .row a{
+    text-decoration:none;
+    color:gray;
+    transition:0.5s;
+    }
+    
+    .footer .row a:hover{
+    color:#fff;
+    }
+    
+    .footer .row ul{
+    width:100%;
+    }
+    
+    .footer .row ul li{
+    display:inline-block;
+    margin:0px 30px;
+    }
+    
+    .footer .row a i{
+    font-size:2em;
+    margin:0% 1%;
+    }
+    
+    form{
+        height: 520px;
+        width: 400px;
+        margin-top: 50px;
+        background-color: rgba(255,255,255,0.13);
+        position: absolute;
+        transform: translate(-50%,-50%);
+        top: 50%;
+        left: 50%;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.1);
+        box-shadow: 0 0 40px rgba(8,7,16,0.6);
+        padding: 50px 35px;
+    }
+    form *{
+        font-family: 'Poppins',sans-serif;
+        color: #010101;
+        letter-spacing: 0.5px;
+        outline: none;
+        border: none;
+    }
+    form h2{
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 42px;
+        text-align: center;
+    }
+    
+    label{
+        display: block;
+        margin-top: 30px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    input{
+        display: block;
+        height: 50px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.07);
+        border-radius: 3px;
+        padding: 0 10px;
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 300;
+    }
+    ::placeholder{
+        color: #090909;
+    }
+    button{
+        margin-top: 50px;
+        width: 100%;
+        background-color: #060606;
+        color: #f6f5f9;
+        padding: 15px 0;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+  
+    
+    import React from 'react';
+import banner from '../assets/banner-img.avif'
+
+const Home = () => {
+  return (
+    <div className="home-page">
+      <img className='banner' src={banner} alt="banner-home"/>
+    </div>
+  );
+};
+
+export default Home;
+
+
+import React, { useEffect, useState } from 'react';
+
+const Products = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
+  return (
+    <div className="products-page">
+      <h1>Our Products</h1>
+      <div className="product-list">
+        {products.map((product) => (
+          <div className="product-card" key={product.id}>
+            <img src={product.image} alt={product.title} />
+            <h3>{product.title}</h3>
+            <p>${product.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Products;
+
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault(); 
+    if (email === 'test11@gmail.com' && password === 'pass123') {
+      alert('Login Successful');
+      navigate('/products');
+    } else {
+      alert('Invalid Credentials. Try Again!');
+    }
+  };
+
+  return (
+    <div className="login-page">
+      <form> 
+        <h2>Login Here</h2>
+
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+
+        <button onClick={handleLogin}>Log In</button>
+      
+      </form>
+
+    </div>
+  );
+};
+
+export default LoginPage;
+ 
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import logo from '../assets/ecommerce-logo.jpg';
+import profile from '../assets/login.jpg'
+
+const Navbar = () => {
+  const navigate = useNavigate();
+
+  return (
+    <nav className="navbar">
+      <NavLink to='/'>  
+        <img className='img-logo' src={logo} alt="Logo"  />
+      </NavLink>
+      <ul>
+        <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <li>Home</li>
+        </NavLink>
+        <NavLink to="/products" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <li>Products</li>
+        </NavLink>
+        <NavLink to="/loginpage" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <li>Login</li>
+        </NavLink>
+        <NavLink to="/loginpage">
+          <img className='img-profile' src={profile} alt="Profile" style={{ cursor: 'pointer' }} />
+        </NavLink>
+      </ul>
+      
+    </nav>
+  );
+};
+
+export default Navbar;
+
+
+import React from 'react'
+
+const Footer = () => {
+  return (
+    <footer>
+        <div class="footer">
+        
+        <div class="row">
+        <ul>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">Our Services</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Career</a></li>
+        </ul>
+        </div>
+
+        <div class="row">
+        ECOMMERCE WEBSITE | Copyright © 2024 | All rights reserved || Designed By: Fathima Fency
+        </div>
+        </div>
+    </footer>
+  )
+}
+
+export default Footer
